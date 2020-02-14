@@ -1,0 +1,23 @@
+<div id="pergaminhos">
+	<h3>Pergaminhos</h3>
+		<ul>
+			
+			<%for(var i = 0 ; i < acoes.length; i++){
+				var txAcao = '';
+				switch(parseInt(acoes[i].acaoSudito)){
+					case 1: txAcao = 'aldeão(ões) coletando recursos'; break;
+					case 2: txAcao = 'enforcamento(s) programado'; break;
+					case 3: txAcao= 'aldeão(ões) em treinamento de história'; break;
+					case 4:	txAcao = 'aldeão(ões) em treinamento de magia';
+				}
+				
+				var date = new Date();
+				var dataAtual = date.getTime();
+				var timeOver = Math.round((acoes[i].timeOutAcao - dataAtual) / 1000);
+
+			%>
+			<li><%=acoes[i].qtdAcaoSudito%> - <%=txAcao%> - restam <spam class="timeOver"><%=timeOver%></spam> segundos - 
+				<a href="/revogarOrder?idOrder=<%=acoes[i]._id%>">revogar ordem</a></li>
+			<%}%>
+		</ul>
+</div>
